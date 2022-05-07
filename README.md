@@ -34,3 +34,4 @@ Improvements to make:
 - have code entry point at WinMainCRTStartup instead maybe? for better startup speed?
 - look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
+- Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
