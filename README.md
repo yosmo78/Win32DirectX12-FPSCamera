@@ -23,7 +23,7 @@ Controls
 - `V` to turn off and on V-Sync in windowed mode
 
 Improvements to make:
-- `Alt+Tab` while FullScreen should minimize screen
+- `Alt+Tab` while FullScreen should minimize screen (remember to take into account the fact that people might have multiple monitors, so clicking outside of the fullscreen window in a different monitor shouldn't minimize it, but pressing `Alt+Tab` while fullscreen window is in focus will minimize it)
 - When resizing the window super fast, there appears to be a white area on the new part of the window. (get rid of that)
 - See if the dxc compiler produces higher quality shader asm than fxc
 - while resizing take into account passage of time during redraws
