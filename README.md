@@ -25,9 +25,11 @@ Controls
 Improvements to make:
 - `Alt+Tab` while FullScreen should minimize screen
 - When resizing the window super fast, there appears to be a white area on the new part of the window. (get rid of that)
-- See if the dxc compiler produces higher quality shader asm than fxc (
+- See if the dxc compiler produces higher quality shader asm than fxc
 - while resizing take into account passage of time during redraws
 - Use EnumAdapterByGpuPreference to get the adapter
 - Take into account different DirectX12/DXGI Versions better
 - While fullscreen use a better sync interval (v-sync off possible?)
 - There seems to be ghosting while in fullscreen, need to fix that.
+- have code entry point at WinMainCRTStartup instead maybe?
+- look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/
