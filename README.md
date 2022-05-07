@@ -33,3 +33,4 @@ Improvements to make:
 - There seems to be ghosting while in fullscreen, need to fix that.
 - have code entry point at WinMainCRTStartup instead maybe?
 - look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/
+- Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
