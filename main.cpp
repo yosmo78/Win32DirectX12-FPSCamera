@@ -28,6 +28,7 @@
 //direct x
 #include <d3d12.h>
 #include <dxgi1_6.h> //#include <dxgi1_4.h> what is difference? https://docs.microsoft.com/en-us/windows/win32/direct3ddxgi/d3d10-graphics-programming-guide-dxgi?redirectedfrom=MSDN
+//https://docs.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-downlevel-intro
 
 //3 ways, runtime compile shaders, precompile into a cso or prcompile into a header
 //time in release which is faster (cso or header?)
@@ -967,6 +968,10 @@ void TogglePause()
     }
 }
 
+void ToggleVSync()
+{
+    isUsingVSync = isUsingVSync^1;
+}
 
 //there appears to be ghosting in fullscreen mode... how to fix that
 void Fullscreen( HWND WindowHandle )
@@ -2262,7 +2267,7 @@ int APIENTRY WinMain(
                         {
                         	if( WasDown != IsDown && WasDown != 1)
                         	{
-                        		isUsingVSync = isUsingVSync^1;
+                        		ToggleVSync();
                         	}
                         	break;
                         }
