@@ -1663,7 +1663,8 @@ bool InitDirectX12( HWND WindowHandle )
 	printf( "Amount of Video Memory on selected D3D12 device: %lld\n", amountOfVideoMemory );
 #endif
 	//actually retrieve the device interface to the adapter
-	if( FAILED( D3D12CreateDevice( adapter4, D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS( &device ) ) ) )
+	//IS D3D_FEATURE_LEVEL_12_0 DirectX12 or is D3D_FEATURE_LEVEL_11_0?
+	if( FAILED( D3D12CreateDevice( adapter4, D3D_FEATURE_LEVEL_12_0, IID_PPV_ARGS( &device ) ) ) )
 	{
 		logError( "Error could not open directx 12 supporting GPU!\n" );  
 		return false;
