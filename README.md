@@ -35,3 +35,4 @@ Improvements to make:
 - look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
+- What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
