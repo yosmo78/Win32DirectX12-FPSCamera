@@ -36,3 +36,5 @@ Improvements to make:
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
 - What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
+- Virtual Alloc for memory allocation
+- Shader Hot reloading in debug build using .cso files
