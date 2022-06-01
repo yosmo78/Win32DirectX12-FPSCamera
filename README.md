@@ -23,7 +23,7 @@ Controls
 - `V` to turn off and on V-Sync in windowed mode
 
 Improvements to make:
-- `Alt+Tab` while FullScreen should hide screen/make it non visible (minimizing screen has an animation which I don't recommend) (remember to take into account the fact that people might have multiple monitors, so clicking outside of the fullscreen window in a different monitor shouldn't minimize it, but pressing `Alt+Tab` while fullscreen window is in focus will minimize it)
+- `Alt+Tab` while FullScreen should hide screen/make it non visible (minimizing screen has an animation which I don't recommend) (remember to take into account the fact that people might have multiple monitors, so clicking outside of the fullscreen window in a different monitor shouldn't minimize it, but pressing `Alt+Tab` while fullscreen window is in focus will minimize it) (look into fullscreen settings in here https://developer.nvidia.com/dx12-dos-and-donts and https://stackoverflow.com/questions/72156247/alt-tab-in-fullscreen-with-setfullscreenstate-directx12-does-not-minimize-window , maybe true fullscreen but a borderless window is better, have to test performance)
 - When resizing the window super fast, there appears to be a white area on the new part of the window. (get rid of that)
 - See if the dxc compiler produces higher quality shader asm than fxc
 - while resizing take into account passage of time during redraws
@@ -36,5 +36,7 @@ Improvements to make:
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
 - What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
-- Virtual Alloc for memory allocation
+- Virtual Alloc for memory allocation (taking into account RAM and VRAM limits)
 - Shader Hot reloading in debug build using .cso files
+- Take into account different DPI
+- Handle Device Removal and SwapChain/Resource loss https://docs.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-getdeviceremovedreason (this but in D3D12 https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn458383(v=win.10)?redirectedfrom=MSDN)
