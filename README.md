@@ -37,6 +37,6 @@ Improvements to make:
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
 - What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
 - Virtual Alloc for memory allocation (taking into account RAM and VRAM limits)
-- Shader Hot reloading in debug build using .cso files
+- Shader Hot reloading in debug build using .cso files in debug build
 - Take into account different DPI
 - Handle Device Removal and SwapChain/Resource loss https://docs.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-getdeviceremovedreason (this but in D3D12 https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn458383(v=win.10)?redirectedfrom=MSDN)
