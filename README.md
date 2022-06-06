@@ -41,3 +41,4 @@ Improvements to make:
 - Take into account different DPI
 - Handle Device Removal and SwapChain/Resource loss https://docs.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-getdeviceremovedreason (this but in D3D12 https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn458383(v=win.10)?redirectedfrom=MSDN)
 - Bundle Command List commands
+- Look into https://developer.nvidia.com/blog/advanced-api-performance-memory-and-resources/
