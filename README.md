@@ -41,5 +41,6 @@ Improvements to make:
 - Take into account different DPI
 - Handle Device Removal and SwapChain/Resource loss https://docs.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-getdeviceremovedreason (this but in D3D12 https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn458383(v=win.10)?redirectedfrom=MSDN)
 - Bundle Command List commands
-- Look into https://developer.nvidia.com/blog/advanced-api-performance-memory-and-resources/
+- Look into https://developer.nvidia.com/blog/advanced-api-performance-memory-and-resources/ and  Mesh Shaders, Sampler Feedback, Direct Storage (directx11 and directx12 features)
 - Have MSAA option from the start for the engine (make it toggeable), too hard to implement years down the line
+- If doing raytracing look into doing RTX combined with ReStir (unless another major breakthrough occurs before then)
