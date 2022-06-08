@@ -44,3 +44,4 @@ Improvements to make:
 - Look into https://developer.nvidia.com/blog/advanced-api-performance-memory-and-resources/ and  Mesh Shaders, Sampler Feedback, Direct Storage (directx11 and directx12 features)
 - Have MSAA option from the start for the engine (make it toggeable), too hard to implement years down the line
 - If doing raytracing look into doing RTX combined with ReStir (unless another major breakthrough occurs before then)
+- Read criticisms in here http://www.mamoniem.com/behind-the-pretty-frames-elden-ring/
