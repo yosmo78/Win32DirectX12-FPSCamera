@@ -32,7 +32,7 @@ Improvements to make:
 - While fullscreen use a better sync interval (v-sync off possible?)
 - There seems to be ghosting while in fullscreen, need to fix that.
 - have code entry point at WinMainCRTStartup instead for better startup speed for Release build for better start up time?
-- look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/
+- look into shader optimization with https://github.com/jbarczak/Pyramid and https://renderdoc.org/ and https://www.guru3d.com/files-details/basemark-gpu-benchmark.html and https://devblogs.microsoft.com/pix/download/
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
 - What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
