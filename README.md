@@ -36,9 +36,10 @@ Improvements to make:
 - Should upload all the models into one preallocated GPU heap using CreatePlacedResource in the advanced model. (upload in batches)
 - Distribute dll's for directx12 if they have the ability to run it, but don't have it installed
 - What should the D3D_FEATURE_LEVEL_12_0 be? or D3D_FEATURE_LEVEL_11_0?
-- Virtual Alloc for memory allocation (taking into account RAM and VRAM limits)
+- Virtual Alloc for memory allocation (taking into account RAM and VRAM limits) and every system reports its projected memory usage over the life time of the program (have a memory counter for always around persitent memory and per scene memory, can add them up to get total projected memory usage)
 - Shader Hot reloading in debug build using .cso files in debug build with a hotkey
 - Take into account different DPI
 - Handle Device Removal and SwapChain/Resource loss https://docs.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12device-getdeviceremovedreason (this but in D3D12 https://docs.microsoft.com/en-us/previous-versions/windows/apps/dn458383(v=win.10)?redirectedfrom=MSDN)
 - Bundle Command List commands
 - Look into https://developer.nvidia.com/blog/advanced-api-performance-memory-and-resources/
+- Have MSAA option from the start for the engine (make it toggeable), too hard to implement years down the line
