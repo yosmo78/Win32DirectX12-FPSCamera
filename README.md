@@ -48,3 +48,4 @@ Improvements to make:
 - Read criticisms in here http://www.mamoniem.com/behind-the-pretty-frames-elden-ring/
 - use bundles to speed up command lists
 - https://developer.nvidia.com/blog/the-peak-performance-analysis-method-for-optimizing-any-gpu-workload/ http://32ipi028l5q82yhj72224m8j.wpengine.netdna-cdn.com/wp-content/uploads/2017/03/GDC2017-Asynchronous-Compute-Deep-Dive.pdf https://docs.microsoft.com/en-us/windows/win32/direct3d12/user-mode-heap-synchronization look into async gpu work and optimizing pipeline throughput
+- Save 1 Byte on alpha channel of color for opaque objects by not uploading an alpha for the colors
