@@ -1348,7 +1348,7 @@ void UploadModels()
   	resourceBufferDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
   	//can leave optimized clear value to nullptr, cause we are going to immediately upload data to it
-	device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COPY_DEST, nullptr, IID_PPV_ARGS(&planeVertexBuffer)  );
+	device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&planeVertexBuffer)  );
 #if MAIN_DEBUG
 	planeVertexBuffer->SetName( L"Plane Vertex Buffer Resource Heap" );
 #endif
@@ -1390,7 +1390,7 @@ void UploadModels()
 
     resourceBufferDesc.Width = sizeof(planeIndices);
 
-    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COPY_DEST, nullptr, IID_PPV_ARGS(&planeIndexBuffer)  );
+    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&planeIndexBuffer)  );
 #if MAIN_DEBUG
 	planeIndexBuffer->SetName( L"Plane Index Buffer Resource Heap" );
 #endif
@@ -1491,7 +1491,7 @@ void UploadModels()
 
     resourceBufferDesc.Width = sizeof(cubeVertices);
 
-    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COPY_DEST, nullptr, IID_PPV_ARGS(&cubeVertexBuffer)  );
+    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&cubeVertexBuffer)  );
 #if MAIN_DEBUG
 	cubeVertexBuffer->SetName( L"Cube Vertex Buffer Resource Heap" );
 #endif
@@ -1528,7 +1528,7 @@ void UploadModels()
 
     resourceBufferDesc.Width = sizeof(cubeIndicies);
 
-    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COPY_DEST, nullptr, IID_PPV_ARGS(&cubeIndexBuffer)  );
+    device->CreateCommittedResource( &heapBufferDesc, D3D12_HEAP_FLAG_NONE, &resourceBufferDesc, D3D12_RESOURCE_STATE_COMMON, nullptr, IID_PPV_ARGS(&cubeIndexBuffer)  );
 #if MAIN_DEBUG
 	cubeIndexBuffer->SetName( L"Cube Index Buffer Resource Heap" );
 #endif
