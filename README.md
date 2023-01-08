@@ -24,6 +24,7 @@ Controls
 
 Improvements to make:
 - `Alt+Tab` while FullScreen should hide screen/make it non visible (minimizing screen has an animation which I don't recommend) (remember to take into account the fact that people might have multiple monitors, so clicking outside of the fullscreen window in a different monitor shouldn't minimize it, but pressing `Alt+Tab` while fullscreen window is in focus will minimize it) (look into fullscreen settings in here https://developer.nvidia.com/dx12-dos-and-donts and https://stackoverflow.com/questions/72156247/alt-tab-in-fullscreen-with-setfullscreenstate-directx12-does-not-minimize-window , maybe true fullscreen but a borderless window is better, have to test performance)
+- try accelerators for alt-tab?
 - When resizing the window super fast, there appears to be a white area on the new part of the window. (get rid of that)
 - See if the dxc compiler produces higher quality shader asm than fxc
 - while resizing take into account passage of time during redraws
