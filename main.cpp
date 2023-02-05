@@ -267,8 +267,7 @@ D3D12_VIEWPORT viewport; // area that output from rasterizer will be stretched t
 D3D12_RECT scissorRect; // the area to draw in. pixels outside that area will not be drawn onto
 
 //GPU/CPU syncronization
-ID3D12Fence* fences[NUM_FRAMES]; //can do it with just one fence and currFenceValue
-u64 currFenceValue = 0;
+ID3D12Fence* fences[NUM_FRAMES];
 u64 fenceValue[NUM_FRAMES];
 HANDLE fenceEvent;
 
