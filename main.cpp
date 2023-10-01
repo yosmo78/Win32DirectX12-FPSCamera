@@ -2368,7 +2368,7 @@ int APIENTRY WinMain(
         	if( !isPaused )
         	{
         		Vec2f forwardOrientation = { -sinf(rotHor*PI_F/180.0f), cosf(rotHor*PI_F/180.0f) };
-        	    Vec2f rightOrientation = { -sinf((rotHor+90)*PI_F/180.0f), cosf((rotHor+90)*PI_F/180.0f) };
+        	    Vec2f rightOrientation = { -forwardOrientation.y, forwardOrientation.x };
         	    Vec3f positionChange = {0.0f,0.0f,0.0f};
         	    if(movingForward)
         	    {
