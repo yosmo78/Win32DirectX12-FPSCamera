@@ -98,6 +98,10 @@ vertexShaderBytecode.BytecodeLength = sizeof(VertexShader);
 
 #define PI_F 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679f
 #define PI_D 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
+#define HALF_PI_F 1.570796326794896619231321691639751442098584699687552910487472296153908203143104499314017412671058533991074043256641153323546922304775291115862679704064240558725142051350969260552779822311474477465191f
+#define HALF_PI_D 1.570796326794896619231321691639751442098584699687552910487472296153908203143104499314017412671058533991074043256641153323546922304775291115862679704064240558725142051350969260552779822311474477465191
+#define TAU_F 6.2831853071795864769252867665590057683943387987502116419498891846156328125724179972560696506842341359642961730265646132941876892191011644634507188162569622349005682054038770422111192892458979098607639f
+#define TAU_D 6.2831853071795864769252867665590057683943387987502116419498891846156328125724179972560696506842341359642961730265646132941876892191011644634507188162569622349005682054038770422111192892458979098607639
 
 typedef uint8_t  u8;
 typedef uint16_t u16;
@@ -223,7 +227,7 @@ u8 forceSoftwareRasterize;
 
 //Player Movement
 f32 speed = 10.0f;           //movement speed
-f32 mouseSensitivity = .05f;  //mouse sensitivity
+f32 mouseSensitivity = 0.00087266462599716478846184538424431f; //mouse sensitivity
 
 bool movingForward = false;
 bool movingLeft = false;
@@ -598,8 +602,8 @@ void Vec3fNormalize( Vec3f *a, Vec3f *out )
 inline
 void InitUnitQuatf( Quatf *q, f32 angle, Vec3f *axis )
 {
-	f32 s = sinf(angle*PI_F/360.0f);
-	q->w = cosf(angle*PI_F/360.0f);
+	f32 s = sinf(angle*0.5f);
+	q->w = cosf(angle*0.5f);
 	q->x = axis->x * s;
 	q->y = axis->y * s;
 	q->z = axis->z * s;
@@ -619,7 +623,7 @@ inline
 void InitViewMat4ByQuatf( Mat4f *a_pMat, f32 horizontalAngle, f32 verticalAngle, Vec3f *a_pPos )
 {
 	Quatf qHor, qVert;
-	Vec3f vertAxis = {cosf(horizontalAngle*PI_F/180.0f),0,-sinf(horizontalAngle*PI_F/180.0f)};
+	Vec3f vertAxis = {cosf(horizontalAngle),0,-sinf(horizontalAngle)};
 	Vec3f horAxis = {0,1,0};
 	InitUnitQuatf( &qVert, verticalAngle, &vertAxis );
 	InitUnitQuatf( &qHor, horizontalAngle, &horAxis );
@@ -2367,7 +2371,7 @@ int APIENTRY WinMain(
 		{
         	if( !isPaused )
         	{
-        		Vec2f forwardOrientation = { -sinf(rotHor*PI_F/180.0f), cosf(rotHor*PI_F/180.0f) };
+        		Vec2f forwardOrientation = { -sinf(rotHor), cosf(rotHor) };
         	    Vec2f rightOrientation = { -forwardOrientation.y, forwardOrientation.x };
         	    Vec3f positionChange = {0.0f,0.0f,0.0f};
         	    if(movingForward)
@@ -2412,8 +2416,9 @@ int APIENTRY WinMain(
         	    //should this be before position change?
         	    //this does not take into account delta time because it is measured on a per-pixel screen difference in the
         	    //windows msg queue
-        		rotHor  = fmodf(rotHor  + mouseSensitivity*frameRot.x, 360.0f );
-        	    rotVert = clamp(rotVert + mouseSensitivity*frameRot.y, -90.0f, 90.0f);
+        	    f32 fNewRotHor = fmodf(rotHor  + mouseSensitivity*frameRot.x, TAU_F );
+        		rotHor  = fNewRotHor;
+        	    rotVert = clamp(rotVert + mouseSensitivity*frameRot.y, -(HALF_PI_F), HALF_PI_F);
         	}
 	
         	drawScene( ( 1 - isPaused ) * deltaTime );
