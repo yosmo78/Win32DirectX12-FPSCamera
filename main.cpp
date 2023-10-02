@@ -240,8 +240,8 @@ bool movingDown = false;
 Vec3f position;
 f32 rotHor;
 f32 rotVert;
-const f32 hFov = 60.0f;
-const f32 vFov = 60.0f;
+const f32 hFov = 1.0471975511965977461542144610932f;
+const f32 vFov = 1.0471975511965977461542144610932f;
 
 //Win32 Screen Variables
 HWND MainWindowHandle;
@@ -381,8 +381,8 @@ void InitRotArbAxisMat4f( Mat4f *a_pMat, Vec3f *a_pAxis, f32 angle )
 inline
 void InitPerspectiveProjectionMat4fOpenGL( Mat4f *a_pMat, u64 width, u64 height, f32 a_hFOV, f32 a_vFOV, f32 nearPlane, f32 farPlane )
 {
-	f32 thFOV = tanf(a_hFOV*PI_F/360);
-	f32 tvFOV = tanf(a_vFOV*PI_F/360);
+	f32 thFOV = tanf(a_hFOV*0.5f);
+	f32 tvFOV = tanf(a_vFOV*0.5f);
 	f32 nMinF = (nearPlane-farPlane);
 	f32 xmax = nearPlane * thFOV;
 	f32 ymax = nearPlane * tvFOV;
@@ -401,8 +401,8 @@ void InitPerspectiveProjectionMat4fOpenGL( Mat4f *a_pMat, u64 width, u64 height,
 inline
 void InitPerspectiveProjectionMat4fDirectXRH( Mat4f *a_pMat, u64 width, u64 height, f32 a_hFOV, f32 a_vFOV, f32 nearPlane, f32 farPlane )
 {
-	f32 thFOV = tanf(a_hFOV*PI_F/360);
-	f32 tvFOV = tanf(a_vFOV*PI_F/360);
+	f32 thFOV = tanf(a_hFOV*0.5f);
+	f32 tvFOV = tanf(a_vFOV*0.5f);
 	f32 nMinF = farPlane/(nearPlane-farPlane);
   	f32 aspect = height / (f32)width;
 	a_pMat->m[0][0] = aspect/(thFOV); a_pMat->m[0][1] = 0;            a_pMat->m[0][2] = 0;               a_pMat->m[0][3] = 0;
@@ -414,8 +414,8 @@ void InitPerspectiveProjectionMat4fDirectXRH( Mat4f *a_pMat, u64 width, u64 heig
 inline
 void InitPerspectiveProjectionMat4fDirectXLH( Mat4f *a_pMat, u64 width, u64 height, f32 a_hFOV, f32 a_vFOV, f32 nearPlane, f32 farPlane )
 {
-	f32 thFOV = tanf(a_hFOV*PI_F/360);
-	f32 tvFOV = tanf(a_vFOV*PI_F/360);
+	f32 thFOV = tanf(a_hFOV*0.5f);
+	f32 tvFOV = tanf(a_vFOV*0.5f);
 	f32 nMinF = farPlane/(nearPlane-farPlane);
   	f32 aspect = height / (f32)width;
 	a_pMat->m[0][0] = aspect/(thFOV); a_pMat->m[0][1] = 0;            a_pMat->m[0][2] = 0;               a_pMat->m[0][3] = 0;
