@@ -340,25 +340,25 @@ inline
 void InitRotXMat4f( Mat4f *a_pMat, f32 angle )
 {
 	a_pMat->m[0][0] = 1; a_pMat->m[0][1] = 0;                        a_pMat->m[0][2] = 0;                       a_pMat->m[0][3] = 0;
-	a_pMat->m[1][0] = 0; a_pMat->m[1][1] = cosf(angle*PI_F/180.0f);  a_pMat->m[1][2] = sinf(angle*PI_F/180.0f); a_pMat->m[1][3] = 0;
-	a_pMat->m[2][0] = 0; a_pMat->m[2][1] = -sinf(angle*PI_F/180.0f); a_pMat->m[2][2] = cosf(angle*PI_F/180.0f); a_pMat->m[2][3] = 0;
+	a_pMat->m[1][0] = 0; a_pMat->m[1][1] = cosf(angle);  a_pMat->m[1][2] = sinf(angle); a_pMat->m[1][3] = 0;
+	a_pMat->m[2][0] = 0; a_pMat->m[2][1] = -sinf(angle); a_pMat->m[2][2] = cosf(angle); a_pMat->m[2][3] = 0;
 	a_pMat->m[3][0] = 0; a_pMat->m[3][1] = 0;                        a_pMat->m[3][2] = 0;                       a_pMat->m[3][3] = 1;
 }
 
 inline
 void InitRotYMat4f( Mat4f *a_pMat, f32 angle )
 {
-	a_pMat->m[0][0] = cosf(angle*PI_F/180.0f);  a_pMat->m[0][1] = 0; a_pMat->m[0][2] = -sinf(angle*PI_F/180.0f); a_pMat->m[0][3] = 0;
+	a_pMat->m[0][0] = cosf(angle);  a_pMat->m[0][1] = 0; a_pMat->m[0][2] = -sinf(angle); a_pMat->m[0][3] = 0;
 	a_pMat->m[1][0] = 0;                        a_pMat->m[1][1] = 1; a_pMat->m[1][2] = 0;                        a_pMat->m[1][3] = 0;
-	a_pMat->m[2][0] = sinf(angle*PI_F/180.0f);  a_pMat->m[2][1] = 0; a_pMat->m[2][2] = cosf(angle*PI_F/180.0f);  a_pMat->m[2][3] = 0;
+	a_pMat->m[2][0] = sinf(angle);  a_pMat->m[2][1] = 0; a_pMat->m[2][2] = cosf(angle);  a_pMat->m[2][3] = 0;
 	a_pMat->m[3][0] = 0;                        a_pMat->m[3][1] = 0; a_pMat->m[3][2] = 0;                        a_pMat->m[3][3] = 1;
 }
 
 inline
 void InitRotZMat4f( Mat4f *a_pMat, f32 angle )
 {
-	a_pMat->m[0][0] = cosf(angle*PI_F/180.0f);  a_pMat->m[0][1] = sinf(angle*PI_F/180.0f); a_pMat->m[0][2] = 0; a_pMat->m[0][3] = 0;
-	a_pMat->m[1][0] = -sinf(angle*PI_F/180.0f); a_pMat->m[1][1] = cosf(angle*PI_F/180.0f); a_pMat->m[1][2] = 0; a_pMat->m[1][3] = 0;
+	a_pMat->m[0][0] = cosf(angle);  a_pMat->m[0][1] = sinf(angle); a_pMat->m[0][2] = 0; a_pMat->m[0][3] = 0;
+	a_pMat->m[1][0] = -sinf(angle); a_pMat->m[1][1] = cosf(angle); a_pMat->m[1][2] = 0; a_pMat->m[1][3] = 0;
 	a_pMat->m[2][0] = 0;                        a_pMat->m[2][1] = 0; 					   a_pMat->m[2][2] = 1; a_pMat->m[2][3] = 0;
 	a_pMat->m[3][0] = 0;                        a_pMat->m[3][1] = 0;                       a_pMat->m[3][2] = 0; a_pMat->m[3][3] = 1;
 }
@@ -367,9 +367,9 @@ void InitRotZMat4f( Mat4f *a_pMat, f32 angle )
 inline
 void InitRotArbAxisMat4f( Mat4f *a_pMat, Vec3f *a_pAxis, f32 angle )
 {
-	f32 c = cosf(angle*PI_F/180.0f);
+	f32 c = cosf(angle);
 	f32 mC = 1.0f-c;
-	f32 s = sinf(angle*PI_F/180.0f);
+	f32 s = sinf(angle);
 	a_pMat->m[0][0] = c                          + (a_pAxis->x*a_pAxis->x*mC); a_pMat->m[0][1] = (a_pAxis->y*a_pAxis->x*mC) + (a_pAxis->z*s);             a_pMat->m[0][2] = (a_pAxis->z*a_pAxis->x*mC) - (a_pAxis->y*s);             a_pMat->m[0][3] = 0;
 	a_pMat->m[1][0] = (a_pAxis->x*a_pAxis->y*mC) - (a_pAxis->z*s);             a_pMat->m[1][1] = c                          + (a_pAxis->y*a_pAxis->y*mC); a_pMat->m[1][2] = (a_pAxis->z*a_pAxis->y*mC) + (a_pAxis->x*s);             a_pMat->m[1][3] = 0;
 	a_pMat->m[2][0] = (a_pAxis->x*a_pAxis->z*mC) + (a_pAxis->y*s);             a_pMat->m[2][1] = (a_pAxis->y*a_pAxis->z*mC) - (a_pAxis->x*s);             a_pMat->m[2][2] = c                          + (a_pAxis->z*a_pAxis->z*mC); a_pMat->m[2][3] = 0;
@@ -806,7 +806,7 @@ void drawScene( f32 deltaTime )
     Mat4f mRot;
     Vec3f rotAxis = {0.57735026919f,0.57735026919f,0.57735026919f};
     static f32 cubeRotAngle = 0;
-    cubeRotAngle += 50.0f*deltaTime;
+    cubeRotAngle += 0.87266462599716478846184538424431f*deltaTime;
     InitRotArbAxisMat4f( &mRot, &rotAxis, cubeRotAngle );
     Mat4f mCubeModel;
     Mat4fMult(&mRot, &mTrans, &mCubeModel);
