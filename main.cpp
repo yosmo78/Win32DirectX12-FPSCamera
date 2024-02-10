@@ -383,18 +383,29 @@ void InitPerspectiveProjectionMat4fOpenGL( Mat4f *a_pMat, u64 width, u64 height,
 {
 	f32 thFOV = tanf(a_hFOV*0.5f);
 	f32 tvFOV = tanf(a_vFOV*0.5f);
-	f32 nMinF = (nearPlane-farPlane);
-	f32 xmax = nearPlane * thFOV;
-	f32 ymax = nearPlane * tvFOV;
-  	f32 ymin = -ymax;
-  	f32 xmin = -xmax;
-  	f32 w = xmax - xmin;
-  	f32 h = ymax - ymin;
+	f64 dNearPlane = (f64)nearPlane;
+	f64 dFarPlane = (f64)farPlane;
+	f64 nMinF = (dNearPlane-dFarPlane);
   	f32 aspect = height / (f32)width;
-	a_pMat->m[0][0] = 2.0f*nearPlane*aspect/(w*thFOV); a_pMat->m[0][1] = 0;                        a_pMat->m[0][2] = 0;                               a_pMat->m[0][3] = 0;
-	a_pMat->m[1][0] = 0;                               a_pMat->m[1][1] = 2.0f*nearPlane/(h*tvFOV); a_pMat->m[1][2] = 0;                               a_pMat->m[1][3] = 0;
-	a_pMat->m[2][0] = 0;                               a_pMat->m[2][1] = 0;                        a_pMat->m[2][2] = (farPlane+nearPlane)/nMinF;      a_pMat->m[2][3] = -1.0f;
-	a_pMat->m[3][0] = 0;                               a_pMat->m[3][1] = 0;                        a_pMat->m[3][2] = 2.0f*(farPlane*nearPlane)/nMinF; a_pMat->m[3][3] = 0;
+	a_pMat->m[0][0] = aspect/(thFOV*thFOV); a_pMat->m[0][1] = 0;                  a_pMat->m[0][2] = 0;                               		 a_pMat->m[0][3] = 0;
+	a_pMat->m[1][0] = 0;                    a_pMat->m[1][1] = 1.0f/(tvFOV*tvFOV); a_pMat->m[1][2] = 0;                               		 a_pMat->m[1][3] = 0;
+	a_pMat->m[2][0] = 0;                    a_pMat->m[2][1] = 0;                  a_pMat->m[2][2] = (f32)((dFarPlane+dNearPlane)/nMinF);     a_pMat->m[2][3] = -1.0f;
+	a_pMat->m[3][0] = 0;                    a_pMat->m[3][1] = 0;                  a_pMat->m[3][2] = (f32)(2.0*(dFarPlane*dNearPlane)/nMinF); a_pMat->m[3][3] = 0;
+}
+inline
+void InitInvPerspectiveProjectionMat4fOpenGL( Mat4f *a_pMat, u64 width, u64 height, f32 a_hFOV, f32 a_vFOV, f32 nearPlane, f32 farPlane )
+{
+	f32 thFOV = tanf(a_hFOV*0.5f);
+	f32 tvFOV = tanf(a_vFOV*0.5f);
+	f64 dNearPlane = (f64)nearPlane;
+	f64 dFarPlane = (f64)farPlane;
+	f64 nMinF = (dNearPlane-dFarPlane);
+	f64 fFarNearDoubled = (2.0*(dFarPlane*dNearPlane));
+  	f32 invAspect = (f32)width/height;
+	a_pMat->m[0][0] = thFOV*thFOV*invAspect; 		   a_pMat->m[0][1] = 0;             a_pMat->m[0][2] = 0;     a_pMat->m[0][3] = 0;
+	a_pMat->m[1][0] = 0;                               a_pMat->m[1][1] = tvFOV * tvFOV; a_pMat->m[1][2] = 0;     a_pMat->m[1][3] = 0;
+	a_pMat->m[2][0] = 0;                               a_pMat->m[2][1] = 0;             a_pMat->m[2][2] = 0;     a_pMat->m[2][3] = (f32)(nMinF/fFarNearDoubled);
+	a_pMat->m[3][0] = 0;                               a_pMat->m[3][1] = 0;             a_pMat->m[3][2] = -1.0f; a_pMat->m[3][3] = (f32)((dFarPlane+dNearPlane)/fFarNearDoubled);
 }
 
 //Following are DirectX Matrices
@@ -622,14 +633,11 @@ void QuatfMult( Quatf *__restrict a, Quatf *__restrict b, Quatf *__restrict out 
 inline
 void InitViewMat4ByQuatf( Mat4f *a_pMat, f32 horizontalAngle, f32 verticalAngle, Vec3f *a_pPos )
 {
-	Quatf qHor, qVert;
-	Vec3f vertAxis = {cosf(horizontalAngle),0,-sinf(horizontalAngle)};
-	Vec3f horAxis = {0,1,0};
-	InitUnitQuatf( &qVert, verticalAngle, &vertAxis );
-	InitUnitQuatf( &qHor, horizontalAngle, &horAxis );
-
 	Quatf qRot;
-	QuatfMult( &qVert, &qHor, &qRot);
+	qRot.w =  cosf(verticalAngle*0.5f) * cosf(horizontalAngle*0.5f);
+	qRot.x =  sinf(verticalAngle*0.5f) * cosf(horizontalAngle*0.5f);
+	qRot.y =  cosf(verticalAngle*0.5f) * sinf(horizontalAngle*0.5f);
+	qRot.z = -sinf(verticalAngle*0.5f) * sinf(horizontalAngle*0.5f);
 
 	a_pMat->m[0][0] = 1.0f - 2.0f*(qRot.y*qRot.y + qRot.z*qRot.z);                                        a_pMat->m[0][1] = 2.0f*(qRot.x*qRot.y - qRot.w*qRot.z);                                               a_pMat->m[0][2] = 2.0f*(qRot.x*qRot.z + qRot.w*qRot.y);        		                                  a_pMat->m[0][3] = 0;
 	a_pMat->m[1][0] = 2.0f*(qRot.x*qRot.y + qRot.w*qRot.z);                                               a_pMat->m[1][1] = 1.0f - 2.0f*(qRot.x*qRot.x + qRot.z*qRot.z);                                        a_pMat->m[1][2] = 2.0f*(qRot.y*qRot.z - qRot.w*qRot.x);        		                                  a_pMat->m[1][3] = 0;
